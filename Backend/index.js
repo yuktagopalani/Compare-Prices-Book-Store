@@ -65,7 +65,7 @@ async function getAmazonPrice(book_name){
         price = $(this).find("span.a-price-symbol").text() + $(this).find("span.a-price-whole").text();
         description = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").text().trim();
         link = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").attr("href");
-        if(title && price && (description=="Paperback" || description=="Hardcover")&& link){
+        if(title && price && (description=="Hardcover" || description=="Paperback") && link){
             books_data.push({title, price, description,link});
         }
           
@@ -86,10 +86,10 @@ app.post('/compare_prices', (req, res) =>{
         res.status(418).send({ message: 'Book name is required'})
     }
     (async () => {
-        all_sites_data=[];
+        
         flipkart_data = await getFlipkartPrice(book_name);
         amazon_data = await getAmazonPrice(book_name);
-        res.status(200).send({"flipkart_data": flipkart_data[0], "amazon_data":amazon_data[0]});
+        res.status(200).send({"flipkart_data": flipkart_data, "amazon_data":amazon_data});
     })();
     
 })
