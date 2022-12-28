@@ -28,4 +28,4 @@ app.use("/api/v1", best_sellers.router);
 app.listen(
     port,
     () => console.log(`its alive on http://localhost:${port}`)
-)
+);

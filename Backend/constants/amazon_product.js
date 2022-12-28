@@ -1,9 +1,11 @@
 module.exports = {
-    url: "https://www.amazon.in/gp/bestsellers/books/",
-    books: ".a-cardui._cDEzb_grid-cell_1uMOS.expandableGrid.p13n-grid-content",
-    title: "._cDEzb_p13n-sc-css-line-clamp-1_1Fn1y",
-    price: "span._cDEzb_p13n-sc-price_3mJ9Z",
-    description: "span.a-size-small.a-color-secondary.a-text-normal",
-    link: "a.a-link-normal.a-text-normal",
-    image: "img.a-dynamic-image.p13n-sc-dynamic-image.p13n-product-image"
+    amz_str1: "https://www.amazon.in/s?k=",
+    amz_str2: "&ref=nb_sb_noss_2",
+    books: "div.a-section",
+    title: "span.a-size-medium.a-color-base.a-text-normal",
+    price_symbol: "span.a-price-symbol",
+    price_whole: "span.a-price-whole",
+    description: "a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold",
+    link: "a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold",
+    image: "img.s-image"
 };

@@ -1,12 +1,13 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+const amazon_product = require('../constants/amazon_product');
+var bookSchema = require('../models/book');
+
 async function getAmazonPrice(book_name){
     books_data = [];
-    const amz_str1="https://www.amazon.in/s?k=";
-    const amz_str2="&ref=nb_sb_noss_2";
     book_name = book_name.replace(" ","+");
-    const url=amz_str1 + book_name + amz_str2;
+    const url=amazon_product.amz_str1 + book_name + amazon_product.amz_str2;
 
     try{
         const response = await axios.get(url, { 
@@ -14,17 +15,19 @@ async function getAmazonPrice(book_name){
         });
 
         const $ = cheerio.load(response.data);
-        const books=$("div.a-section");
+        const books=$(amazon_product.books);
         
         books.each(function(){
             
-            title = $(this).find("span.a-size-medium.a-color-base.a-text-normal").text();
-            price = $(this).find("span.a-price-symbol").text() + $(this).find("span.a-price-whole").text();
-            description = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").text().trim();
-            link = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").attr("href");
+            title = $(this).find(amazon_product.title).text();
+            price = $(this).find(amazon_product.price_symbol).text() + $(this).find(amazon_product.price_whole).text();
+            description = $(this).find(amazon_product.description).text().trim();
+            link = "https://www.amazon.in"+ $(this).find(amazon_product.link).attr("href");
+            image = $(this).find(amazon_product.image).attr("src");
             
             if(title && price && (description=="Hardcover" || description=="Paperback") && link){
-                books_data.push({title, price, description,link});
+                var book = new bookSchema.Book(title, price, description, link, image);
+                books_data.push(book);
             }
         });
 

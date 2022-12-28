@@ -13,16 +13,17 @@ async function getBestSellers(){
         });
 
         const $ = cheerio.load(response.data);
-        var book = new bookSchema.Book(amazon_bestsellers.books,amazon_bestsellers.title,amazon_bestsellers.description,amazon_bestsellers.link,amazon_bestsellers.image);
-        const books=$(book.books);
+        const books=$(amazon_bestsellers.books);
         
         books.each(function(){
-            title = $(this).find(book.title).text();
-            price = $(this).find(book.price).text();
-            description = $(this).find(book.description).text();
-            link = $(this).find(book.link).attr("href");
-            image = $(this).find(book.image).attr("src");
-            books_data.push({title, price, description,link,image});  
+            title = $(this).find(amazon_bestsellers.title).text();
+            price = $(this).find(amazon_bestsellers.price).text();
+            description = $(this).find(amazon_bestsellers.description).text();
+            link = "https://www.amazon.in" + $(this).find(amazon_bestsellers.link).attr("href");
+            image = $(this).find(amazon_bestsellers.image).attr("src");
+
+            var book = new bookSchema.Book(title,price,description,link,image);
+            books_data.push(book);  
         });
 
         return books_data;

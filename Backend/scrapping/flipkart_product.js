@@ -1,13 +1,13 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+const flipkart_product = require("../constants/flipkart_product");
+var bookSchema = require('../models/book');
 
 async function getFlipkartPrice(book_name){
     books_data = [];
-    const flp_str1="https://www.flipkart.com/search?q=";
-    const flp_str2="&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.language%255B%255D%3DEnglish";
     book_name = book_name.replace(" ","+");
-    const url=flp_str1 + book_name + flp_str2;
+    const url = flipkart_product.flp_str1 + book_name + flipkart_product.flp_str2;
 
     try{
         const response = await axios.get(url, { 
@@ -15,15 +15,17 @@ async function getFlipkartPrice(book_name){
         });
 
         const $ = cheerio.load(response.data);
-        const books=$("._4ddWXP"); 
+        const books=$(flipkart_product.books); 
         
         books.each(function(){
 
-        title = $(this).find(".s1Q9rs").text();
-        price = $(this).find("._30jeq3").text();
-        description = $(this).find("._3Djpdu").text();
-        link = $(this).find(".s1Q9rs").attr("href");
-        books_data.push({title, price, description,link});  
+        title = $(this).find(flipkart_product.title).text();
+        price = $(this).find(flipkart_product.price).text();
+        description = $(this).find(flipkart_product.description).text();
+        link = "https://www.flipkart.com/" + $(this).find(flipkart_product.link).attr("href");
+        image = $(this).find(flipkart_product.image).attr("src");
+        var book = new bookSchema.Book(title, price, description, link, image);
+        books_data.push(book);  
 
         });
         return books_data;

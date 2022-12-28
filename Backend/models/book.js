@@ -1,6 +1,5 @@
 class Book{
-    constructor(books, title, price, description, link, image){
-        this.books = books;
+    constructor(title, price, description, link, image){
         this.title = title;
         this.price = price;
         this.description = description;
