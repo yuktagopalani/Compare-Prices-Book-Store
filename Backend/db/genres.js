@@ -11,8 +11,10 @@ async function getGenres(){
 
     return genres;
 }
-(async () => {
-    genres = await getGenres();
-    console.log(genres);
-})();
+
+exports.getGenres = getGenres;
+// (async () => {
+//     genres = await getGenres();
+//     console.log(genres);
+// })();
 

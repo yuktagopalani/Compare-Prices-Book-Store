@@ -5,7 +5,7 @@ const port = 8080;
 
 var compare_prices = require('./routes/compare_prices');
 var best_sellers = require('./routes/best_sellers');
-
+var genres = require('./routes/genres_list');
 
 // ---- middlewares------
 app.use(express.json());
@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 // -----routes-------
 app.use("/api/v1", compare_prices.router);
 app.use("/api/v1", best_sellers.router);
+app.use("/api/v1", genres.router);
 
 // -----listen to port------
 app.listen(
