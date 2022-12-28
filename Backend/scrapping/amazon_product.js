@@ -17,16 +17,15 @@ async function getAmazonPrice(book_name){
         const books=$("div.a-section");
         
         books.each(function(){
-
+            
             title = $(this).find("span.a-size-medium.a-color-base.a-text-normal").text();
             price = $(this).find("span.a-price-symbol").text() + $(this).find("span.a-price-whole").text();
             description = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").text().trim();
             link = $(this).find("a.a-size-base.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-bold").attr("href");
+            
             if(title && price && (description=="Hardcover" || description=="Paperback") && link){
                 books_data.push({title, price, description,link});
             }
-          
-
         });
 
         return books_data;

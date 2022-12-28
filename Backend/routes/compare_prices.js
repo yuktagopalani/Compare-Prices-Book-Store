@@ -1,10 +1,8 @@
 const express = require('express');
-const cheerio = require("cheerio");
-const axios = require("axios");
 const router = express.Router();
 
-var flipkart = require('../scrapping/flipkart');
-var amazon = require('../scrapping/amazon');
+var flipkart = require('../scrapping/flipkart_product');
+var amazon = require('../scrapping/amazon_product');
 
 router.post('/compare_prices', (req, res) =>{
     const { book_name } = req.body;
