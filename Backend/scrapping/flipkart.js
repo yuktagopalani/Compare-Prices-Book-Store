@@ -1,3 +1,7 @@
+const cheerio = require("cheerio");
+const axios = require("axios");
+
+
 async function getFlipkartPrice(book_name){
     books_data = [];
     const flp_str1="https://www.flipkart.com/search?q=";
@@ -11,7 +15,7 @@ async function getFlipkartPrice(book_name){
         });
 
         const $ = cheerio.load(response.data);
-        const books=$("._4ddWXP");
+        const books=$("._4ddWXP"); 
         
         books.each(function(){
 
@@ -22,12 +26,11 @@ async function getFlipkartPrice(book_name){
         books_data.push({title, price, description,link});  
 
         });
-
         return books_data;
     }
     catch(error){
         console.error(error);
     }
 }
-module.exports.getFlipkartPrice=getFlipkartPrice;
-// export {getFlipkartPrice};
+exports.getFlipkartPrice=getFlipkartPrice;
+
