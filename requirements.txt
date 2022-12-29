@@ -1,4 +1,5 @@
-cd Backend
 npm install express
 npm install axios
 npm install axios cheerio json2csv
+npm i mongodb
+npm i dotenv
