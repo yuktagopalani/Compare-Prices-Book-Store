@@ -3,9 +3,8 @@ const axios = require("axios");
 
 var bookSchema = require('../models/book');
 
-async function getBestSellers(amazon_bestsellers){
+async function getBookByGenre(amazon_bestsellers, url){
     books_data = [];
-    const url = amazon_bestsellers.url;
     try{
         const response = await axios.get(url, { 
             headers: { "Accept-Encoding": "gzip,deflate,compress" } 
@@ -32,4 +31,4 @@ async function getBestSellers(amazon_bestsellers){
     }
 }
 
-exports.getBestSellers = getBestSellers;
+exports.getBookByGenre = getBookByGenre;
