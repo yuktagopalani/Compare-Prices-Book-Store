@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
+const port = process.env.PORT || 8080;
 
 var compare_prices = require('./routes/compare_prices');
 var best_sellers = require('./routes/best_sellers');
