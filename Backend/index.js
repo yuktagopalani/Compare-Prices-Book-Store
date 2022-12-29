@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-
 var compare_prices = require('./routes/compare_prices');
 var best_sellers = require('./routes/best_sellers');
-var genres = require('./routes/genres_list');
+var genres = require('./routes/genres');
 var books = require('./routes/books');
 
 // ---- middlewares------
