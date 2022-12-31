@@ -37,4 +37,17 @@ var {genre_data} = require('../constants/genres_data');
 //     );
 // }
 
+async function getBookUtil(req,res){
+    var { genre } = req.params;
+    genre = genre.replaceAll("+"," ");
+    try{
+        genre_url = genre_data[genre]['website link'];
+        books = await book_by_genre.getBookByGenre(amazon_bestsellers,genre_url);
+        return books;
+    }
+    catch(e){
+        console.error(e);
+    }
+}
+exports.getBookUtil = getBookUtil;
 exports.router = router;

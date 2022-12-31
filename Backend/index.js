@@ -5,7 +5,7 @@ var compare_prices = require('./routes/compare_prices');
 var best_sellers = require('./routes/best_sellers');
 var genres = require('./routes/genres');
 var book_by_genre = require('./routes/book_by_genre');
-var connection = require('./db/connection');
+// var connection = require('./db/connection');
 
 
 
@@ -42,7 +42,17 @@ app.use((req, res, next) => {
 app.use("/api/v1", compare_prices.router);
 app.use("/api/v1", best_sellers.router);
 // app.use("/api/v1", genres.router);
-app.use("/api/v1", book_by_genre.router);
+// app.use("/api/v1", book_by_genre.router);
+app.use("/api/v1/genres/:genre", async function(req, res) {
+    try{
+      books = await book_by_genre.getBookUtil(req, res);
+      res.status(200).send(books);
+    }
+    catch(e){
+      res.status(404).send(e);
+    }
+
+})
 genres.genereRouter("", app);
 // book_by_genre.bookByGenreRouter("", app);
 
