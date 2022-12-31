@@ -30,7 +30,7 @@ app.use("/api/v1", genres.router);
 app.use("/api/v1", book_by_genre.router);
 
 
-// ------------checking-----
+// ------------health check-----
 app.get('/api/v1', (req, res) =>{
       res.sendStatus(200);
 });
@@ -39,5 +39,5 @@ app.get('/api/v1', (req, res) =>{
 // -----listen to port------
 app.listen(
     port,
-    () => console.log(`its alive on http://localhost:${port}`)
+    () => console.log(`its alive on ${port}`)
 );
