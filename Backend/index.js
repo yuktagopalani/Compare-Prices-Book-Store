@@ -13,8 +13,6 @@ var connection = require('./db/connection');
   const database = await connection.getConnection();
   genres.genereRouter(database, app);
   book_by_genre.bookByGenreRouter(database, app);
-  // module.exports.database = database;
-  // connection.db = database;
 })();
 
 
