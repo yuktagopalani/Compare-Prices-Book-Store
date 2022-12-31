@@ -29,6 +29,13 @@ app.use("/api/v1", best_sellers.router);
 app.use("/api/v1", genres.router);
 app.use("/api/v1", book_by_genre.router);
 
+
+// ------------checking-----
+app.get('/api/v1', (req, res) =>{
+      res.sendStatus(200);
+});
+
+
 // -----listen to port------
 app.listen(
     port,
