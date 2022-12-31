@@ -40,8 +40,11 @@ var {genre_data} = require('../constants/genres_data');
 async function getBookUtil(req,res){
     var { genre } = req.params;
     genre = genre.replaceAll("+"," ");
+    // console.log(genre);
     try{
-        genre_url = genre_data[genre]['website link'];
+        console.log(genre_data);
+        genre_details = genre_data[genre];
+        genre_url = genre_details['website link'];
         books = await book_by_genre.getBookByGenre(amazon_bestsellers,genre_url);
         return books;
     }
