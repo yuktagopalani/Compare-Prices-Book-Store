@@ -1,8 +1,5 @@
-const connection = require('./connection');
-
-async function getGenres(){
+async function getGenres(db){
     var genres = [];
-    const db = await connection.getConnection();
     let collection = db.collection('genres');
     let response = await collection.find({}).toArray();
     response.forEach((genre)=>{
