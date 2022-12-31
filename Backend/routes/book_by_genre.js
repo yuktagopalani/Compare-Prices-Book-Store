@@ -7,9 +7,9 @@ var book_by_genre = require('../scrapping/book_by_genre');
 
 var {genre_data} = require('../constants/genres_data');
 
-function bookByGenreRouter(database, app) {
-    app.use("/api/v1",
-        router.get('/genres/:genre', (req, res) =>{
+// function bookByGenreRouter(database, app) {
+//     app.use("/api/v1",
+        router.get('/genres/:genre', (req, res) => {
             var { genre } = req.params;
             genre = genre.replaceAll("+"," ");
             // (async () => {
@@ -34,7 +34,7 @@ function bookByGenreRouter(database, app) {
 
             
         })
-    );
-}
+//     );
+// }
 
-exports.bookByGenreRouter = bookByGenreRouter;
+exports.router = router;

@@ -42,9 +42,9 @@ app.use((req, res, next) => {
 app.use("/api/v1", compare_prices.router);
 app.use("/api/v1", best_sellers.router);
 // app.use("/api/v1", genres.router);
-// app.use("/api/v1", book_by_genre.router);
+app.use("/api/v1", book_by_genre.router);
 genres.genereRouter("", app);
-book_by_genre.bookByGenreRouter("", app);
+// book_by_genre.bookByGenreRouter("", app);
 
 
 // ------------health check-----
