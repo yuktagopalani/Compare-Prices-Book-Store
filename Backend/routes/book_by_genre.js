@@ -20,9 +20,15 @@ function bookByGenreRouter(database, app) {
             // })();
             
             (async () => {
-                genre_url = genre_data[genre]['website link'];
-                books = await book_by_genre.getBookByGenre(amazon_bestsellers,genre_url);
-                res.status(200).send(books);
+                try{
+                    genre_url = genre_data[genre]['website link'];
+                    books = await book_by_genre.getBookByGenre(amazon_bestsellers,genre_url);
+                    res.status(200).send(books);
+                }
+                catch(e){
+                    res.status(404).send(e);
+                }
+                
 
             })();
 
