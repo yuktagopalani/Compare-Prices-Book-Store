@@ -22,7 +22,7 @@ async function getFlipkartPrice(book_name){
         title = $(this).find(flipkart_product.title).text();
         price = $(this).find(flipkart_product.price).text();
         description = $(this).find(flipkart_product.description).text();
-        link = "https://www.flipkart.com/" + $(this).find(flipkart_product.link).attr("href");
+        link = "https://www.flipkart.com" + $(this).find(flipkart_product.link).attr("href");
         image = $(this).find(flipkart_product.image).attr("src");
         var book = new bookSchema.Book(title, price, description, link, image);
         books_data.push(book);  

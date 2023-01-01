@@ -14,14 +14,18 @@ async function getBookByGenre(amazon_bestsellers, url){
         const books=$(amazon_bestsellers.books);
         
         books.each(function(){
-            title = $(this).find(amazon_bestsellers.title).text();
+            title_detail = $(this).find(amazon_bestsellers.title_detail);
+            title_tag = $(title_detail).find(amazon_bestsellers.title_tag);
+            title = $(title_tag).find(amazon_bestsellers.small_title).text() || $(title_tag).find(amazon_bestsellers.big_title).text(); 
+            author = $(this).find(amazon_bestsellers.author_type1).text() || $(this).find(amazon_bestsellers.author_type2).text();
             price = $(this).find(amazon_bestsellers.price).text();
             description = $(this).find(amazon_bestsellers.description).text();
-            link = "https://www.amazon.in" + $(this).find(amazon_bestsellers.link).attr("href");
+            link = amazon_bestsellers.base_url + $(this).find(amazon_bestsellers.link).attr("href");
             image = $(this).find(amazon_bestsellers.image).attr("src");
-
-            var book = new bookSchema.Book(title,price,description,link,image);
-            books_data.push(book);  
+            if(title && author && price && description && link && image){
+                var book = new bookSchema.Book(title,price,description,link,image,author);
+                books_data.push(book);
+            }  
         });
 
         return books_data;
