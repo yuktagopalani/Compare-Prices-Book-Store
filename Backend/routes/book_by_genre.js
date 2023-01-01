@@ -37,7 +37,7 @@ var {genre_data} = require('../constants/genres_data');
 
 async function getBookUtil(req,res){
     var { genre } = req.params;
-    genre = String(genre).replaceAll("+"," ");
+    genre = String(genre).split("+").join(" ");
     // console.log(genre);
     try{
         // console.log(genre_data);
