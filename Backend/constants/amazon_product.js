@@ -1,4 +1,5 @@
 module.exports = {
+    base_url: "https://www.amazon.in",
     amz_str1: "https://www.amazon.in/s?k=",
     amz_str2: "&ref=nb_sb_noss_2",
     books: "div.a-section",

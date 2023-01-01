@@ -1,4 +1,5 @@
 module.exports = {
+    base_url: "https://www.flipkart.com",
     flp_str1: "https://www.flipkart.com/search?q=",
     flp_str2: "&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.language%255B%255D%3DEnglish",
     books: "._4ddWXP",

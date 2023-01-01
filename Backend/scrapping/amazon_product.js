@@ -22,7 +22,7 @@ async function getAmazonPrice(book_name){
             title = $(this).find(amazon_product.title).text();
             price = $(this).find(amazon_product.price_symbol).text() + $(this).find(amazon_product.price_whole).text();
             description = $(this).find(amazon_product.description).text().trim();
-            link = "https://www.amazon.in"+ $(this).find(amazon_product.link).attr("href");
+            link = amazon_product.base_url + $(this).find(amazon_product.link).attr("href");
             image = $(this).find(amazon_product.image).attr("src");
             
             if(title && price && (description=="Hardcover" || description=="Paperback") && link){

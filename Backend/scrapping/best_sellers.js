@@ -2,6 +2,7 @@ const cheerio = require("cheerio");
 const axios = require("axios");
 
 var bookSchema = require('../models/book');
+
 async function getBestSellers(amazon_bestsellers){
     books_data = [];
     const url = amazon_bestsellers.url;

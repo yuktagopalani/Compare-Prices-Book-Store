@@ -11,7 +11,7 @@ var {genre_data} = require('../constants/genres_data');
 //     app.use("/api/v1",
         router.get('/genres/:genre', (req, res) => {
             var { genre } = req.params;
-            genre = String(genre).replaceAll("+"," ");
+            genre = String(genre).split("+").join(" ");
             // (async () => {
             //     genre_detail = await genre_info.getGenreInfo(genre, database);
             //     genre_url = genre_detail[0]['website link'];
@@ -21,9 +21,10 @@ var {genre_data} = require('../constants/genres_data');
             
             (async () => {
                 try{
-                    genre_url = genre_data[genre]['website link'];
+                    genre_details = genre_data[genre];
+                    genre_url = genre_details['website link'];
                     books = await book_by_genre.getBookByGenre(amazon_bestsellers,genre_url);
-                    res.status(200).send(books);
+                    return books;
                 }
                 catch(e){
                     res.status(404).send(e);

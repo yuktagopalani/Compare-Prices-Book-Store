@@ -17,11 +17,6 @@ var book_by_genre = require('./routes/book_by_genre');
 
 
 
-
-
-
-
-
 // ---- middlewares------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,8 +36,6 @@ app.use((req, res, next) => {
 // -----routes-------
 app.use("/api/v1", compare_prices.router);
 app.use("/api/v1", best_sellers.router);
-// app.use("/api/v1", genres.router);
-// app.use("/api/v1", book_by_genre.router);
 app.use("/api/v1/genres/:genre", async function(req, res) {
     try{
       books = await book_by_genre.getBookUtil(req, res);
@@ -54,7 +47,6 @@ app.use("/api/v1/genres/:genre", async function(req, res) {
 
 })
 genres.genereRouter("", app);
-// book_by_genre.bookByGenreRouter("", app);
 
 
 // ------------health check-----
