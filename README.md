@@ -7,7 +7,7 @@
 <li>Book list by genres</li>
 </ul>
 <h2>Deployed api base url : https://kitaab-api.onrender.com</h2>
-<h2>End Points:</h2>
+<h3>End Points:</h3>
 <ul>
 <li><p>/api/v1 : HEALTH CHECK</p></li>
 <li><p>/api/v1/genres : GET REQUEST</p></li>
